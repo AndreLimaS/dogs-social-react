@@ -5,6 +5,10 @@ const types = {
     regex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     message: "Preencha um email valido",
   },
+  password: {
+    regex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
+    message: "mínimo 8 caracteres, com 1 maíusciula e 1 caracter especial",
+  },
 };
 
 function useForm(type) {
@@ -17,7 +21,7 @@ function useForm(type) {
       setError("Preencha um valor");
       return false;
     } else if (types[type] && !types[type].regex.test(value)) {
-      setError(types[type].massage);
+      setError(types[type].message);
       return false;
     } else {
       setError(null);
